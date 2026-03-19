@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return f'Hola desde programación web dinamica'
+    return f'Practicando para la materia Programación Web Dinámica'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
