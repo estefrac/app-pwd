@@ -7,6 +7,7 @@ class Usuario(db.Model):
     nombre = db.Column(db.String(100))
     email = db.Column(db.String(200))
     created_at = db.Column(db.DateTime, server_default=db.func.now())
+    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
 
     def __init__(self, nombre, email):
         self.nombre = nombre
@@ -14,4 +15,13 @@ class Usuario(db.Model):
 
     def __repr__(self):
         return f"Usuario='{self.nombre}', email='{self.email}', fecha='{self.created_at}'"
+
+    def to_dict(self) -> str:
+        return {
+            'id':self.id,
+            'nombre': self.nombre,
+            'email': self.email,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
 

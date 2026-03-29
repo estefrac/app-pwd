@@ -27,8 +27,25 @@ services:
     networks:
       - pwd_network
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_pwd
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_SERVER_MODE: ${PGADMIN_CONFIG_SERVER_MODE}
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - pwd_network
+
 volumes:
   pgdata:
+  pgadmin_data:
 
 networks:
   pwd_network:
