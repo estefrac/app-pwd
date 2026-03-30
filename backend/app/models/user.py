@@ -2,7 +2,7 @@ from app.models import db
 
 class Usuario(db.Model):
     
-    __table_name__ = 'usuarios'
+    __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     email = db.Column(db.String(200))
@@ -16,7 +16,7 @@ class Usuario(db.Model):
     def __repr__(self):
         return f"Usuario='{self.nombre}', email='{self.email}', fecha='{self.created_at}'"
 
-    def to_dict(self) -> str:
+    def to_dict(self) -> dict:
         return {
             'id':self.id,
             'nombre': self.nombre,
