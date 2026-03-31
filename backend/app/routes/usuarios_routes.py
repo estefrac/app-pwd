@@ -14,4 +14,18 @@ def show(id):
 
 @usuario.route('/', methods=['POST'])
 def create():
-    return UsuarioController.create(request.get_json())
+    data = request.get_json()
+    if data is None:
+        return {'message': 'No se proporcionaron datos'}, 400
+    return UsuarioController.create(data)
+
+@usuario.route('/<int:id>', methods=['PUT'])
+def update(id):
+    data = request.get_json()
+    if data is None:
+        return {'message': 'No se proporcionaron datos'}, 400
+    return UsuarioController.update(data, id)
+
+@usuario.route('/<int:id>', methods=['DELETE'])
+def destroy(id):
+    return UsuarioController.destroy(id)
