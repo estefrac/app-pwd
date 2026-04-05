@@ -32,7 +32,7 @@ class UsuarioController(Controller):
             error = 'El email es requerido'
         if error is None:
             try:
-                usuario = Usuario(nombre=nombre, email=email)
+                usuario = Usuario(nombre=nombre, email=email, rol_id=1, password='123456')
                 db.session.add(usuario)
                 db.session.commit()
                 return jsonify({'message':'Usuario creado exitosamente'}), 201
