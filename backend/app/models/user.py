@@ -1,4 +1,6 @@
 from app.models import db
+# Paquetes para encriptar y validar contraseñas, vienen con Flask, no es necesario instalar nada adicional
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuario(db.Model):
     
@@ -33,4 +35,10 @@ class Usuario(db.Model):
             'updated_at': self.updated_at,
             'rol': self.rol.to_dict() if self.rol else None
         }
+
+    def validate_password(self, password:str) -> bool:
+        return check_password_hash(self.password, password)
+
+    def generate_password(self, password:str):
+        self.password = generate_password_hash(password)
 
